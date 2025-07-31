@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Store | Modern Ecommerce</title>
+    <!-- Importing a professional font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <h1>The Store</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- View for the list of all products -->
+        <div id="products-list-view">
+            <div id="products-grid" class="products-grid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- View for a single product's details -->
+        <div id="product-detail-view" class="hidden">
+            <button id="back-button">← Back to Products</button>
+            <div id="product-details">
+                <!-- Product details will be dynamically inserted here -->
+            </div>
+        </div>
+        
+        <!-- Universal Loading and Error States -->
+        <div id="loading-indicator" class="hidden"><div class="spinner"></div></div>
+        <div id="error-message" class="error hidden"></div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2024 The Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+
+</body>
+</html>

@@ -66,7 +66,7 @@ class Product(BaseModel):
 app = FastAPI(
     title="Products API",
     description="A RESTful API for reading product data.",
-    version="1.0.0"
+    version="1.0.0" 
 )
 
 # Add CORS middleware to allow cross-origin requests (e.g., from a frontend)
