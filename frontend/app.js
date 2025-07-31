@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="product-info">
                     <table class="product-info-table">
                         <tr><td>Category</td><td>${product.category}</td></tr>
-                        <tr><td>Department</td><td>${product.department}</td></tr>
+                        <tr><td>Department</td><td>${product.department.name}</td></tr>
                         <tr><td>SKU</td><td>${product.sku}</td></tr>
                         <tr><td>Product ID</td><td>${product.id}</td></tr>
                     </table>
