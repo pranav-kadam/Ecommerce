@@ -1,24 +1,36 @@
+# backend/app.py
+
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import engine, Column, Integer, String, Numeric, ForeignKey, func
+from sqlalchemy import create_engine, Column, Integer, String, Numeric, ForeignKey, func
 from sqlalchemy.orm import sessionmaker, Session, relationship, joinedload, declarative_base
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 import os
 
+# --- 1. Database Configuration (Corrected) ---
+
 DB_USER = os.getenv("PG_USER", "postgres")
-DB_PASSWORD = os.getenv("PG_PASSWORD") # The script will fail if this isn't set
+# FIX #2: If PG_PASSWORD is not set, default to an empty string "", not None.
+DB_PASSWORD = os.getenv("PG_PASSWORD", "") 
 DB_HOST = os.getenv("PG_HOST", "localhost")
 DB_PORT = os.getenv("PG_PORT", "5432")
 DB_NAME = os.getenv("PG_DBNAME", "ecommerce")
 
+# Create the connection string
 SQLALCHEMY_DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
+# FIX #1: Create the SQLAlchemy engine (this line was missing)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
-
-
+# Now, `engine` exists and can be used here
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+
+# --- 2. SQLAlchemy ORM Models ---
+# (The rest of your file is correct and does not need to be changed)
+# ...
 
 # --- 2. SQLAlchemy ORM Models ---
 class DepartmentModel(Base):
@@ -48,17 +60,22 @@ class Department(BaseModel):
 class DepartmentWithCount(Department):
     product_count: int
 
+# In section --- 3. Pydantic Models ---
+
 class Product(BaseModel):
     id: int
     cost: float
-    category: str
-    name: str
-    brand: str
+    # Mark fields that can be NULL in the database as Optional
+    category: Optional[str] = None
+    name: Optional[str] = None
+    brand: Optional[str] = None
     retail_price: float
     department: Department
-    sku: str
+    sku: Optional[str] = None
     distribution_center_id: int
-    class Config: from_attributes = True
+
+    class Config:
+        from_attributes = True
 
 # --- 4. FastAPI App Initialization ---
 app = FastAPI(
