@@ -1,15 +1,18 @@
 import pandas as pd
 from sqlalchemy import create_engine
+import os
 
-# --- Configuration ---
-# Replace with your actual database connection details
-DB_USER = "postgres"
-DB_PASSWORD = ""
-DB_HOST = "localhost"
-DB_PORT = "5432"
-DB_NAME = "ecommerce"
+
+DB_USER = os.getenv("PG_USER", "postgres")
+DB_PASSWORD = os.getenv("PG_PASSWORD") # The script will fail if this isn't set
+DB_HOST = os.getenv("PG_HOST", "localhost")
+DB_PORT = os.getenv("PG_PORT", "5432")
+DB_NAME = os.getenv("PG_DBNAME", "ecommerce")
+
+
 TABLE_NAME = "products"
 CSV_FILE_PATH = "products.csv"
+
 
 db_url = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
