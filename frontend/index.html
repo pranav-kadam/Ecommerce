@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Store | Modern Ecommerce</title>
-    <!-- Importing a professional font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -14,30 +13,42 @@
 
     <header class="site-header">
         <div class="container">
-            <h1>The Store</h1>
+            <a href="#" class="logo-link"><h1>The Store</h1></a>
         </div>
     </header>
 
-    <main class="container">
-        <!-- View for the list of all products -->
-        <div id="products-list-view">
-            <div id="products-grid" class="products-grid">
-                <!-- Products will be dynamically inserted here -->
-            </div>
-        </div>
+    <div class="main-layout container">
+        <!-- Sidebar for Department Navigation -->
+        <aside id="sidebar">
+            <h2>Departments</h2>
+            <ul id="departments-list">
+                <!-- Department links will be dynamically inserted here -->
+            </ul>
+        </aside>
 
-        <!-- View for a single product's details -->
-        <div id="product-detail-view" class="hidden">
-            <button id="back-button">← Back to Products</button>
-            <div id="product-details">
-                <!-- Product details will be dynamically inserted here -->
+        <!-- Main Content Area -->
+        <main id="content">
+            <!-- Header for the current view (e.g., "All Products" or "Men") -->
+            <div id="page-header">
+                <h2 id="page-title">All Products</h2>
             </div>
-        </div>
-        
-        <!-- Universal Loading and Error States -->
-        <div id="loading-indicator" class="hidden"><div class="spinner"></div></div>
-        <div id="error-message" class="error hidden"></div>
-    </main>
+            
+            <!-- View for the list of products -->
+            <div id="products-list-view">
+                <div id="products-grid" class="products-grid"></div>
+            </div>
+
+            <!-- View for a single product's details -->
+            <div id="product-detail-view" class="hidden">
+                <button id="back-button">← Back</button>
+                <div id="product-details"></div>
+            </div>
+            
+            <!-- Universal Loading and Error States -->
+            <div id="loading-indicator" class="hidden"><div class="spinner"></div></div>
+            <div id="error-message" class="error hidden"></div>
+        </main>
+    </div>
     
     <footer class="site-footer">
         <div class="container">
